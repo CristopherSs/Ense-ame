@@ -1,6 +1,7 @@
 from typing import List
 
-from Backend.Entidades import PermisoEntidad
+from Backend.Entidades.PermisoEntidad import PermisoEntidad
+from Backend.Entidades.RolEntidad import RolEntidad
 from DataBase.DBConexion import DB
 
 
@@ -14,8 +15,17 @@ class PermisoDB:
         ...
 
     def obtener_permisos(self) -> None:
-        value = self.__DB.llamar_sp('obtenerTodoPermisos', [])
-        print(value)
+        valores = self.__DB.llamar_sp('obtenerTodoPermisos', [])
+        lista_permisos = []
+        for datos in valores:
+            dato_unitario = \
+                {
+                    "permisoId": datos[0],
+                    "nombre": datos[1],
+                    "descripcion": datos[2],
+                }
+            lista_permisos.append(PermisoEntidad(**dato_unitario))
+        return lista_permisos
 
 
 per = PermisoDB()
