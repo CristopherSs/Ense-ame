@@ -9,7 +9,7 @@ class DB:
             data = json.load(file)
         self.__connstr = data
 
-    def __executor_query(self, store_procedure_name: str) -> bool:
+    def llamar_sp(self, store_procedure_name: str) -> bool:
         self.__conn = psycopg2.connect(self.__connstr)
         self.__cur = self.__conn.cursor()
         self.__cur.execute(store_procedure_name)
