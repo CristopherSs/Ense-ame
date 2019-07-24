@@ -4,5 +4,5 @@ from dataclasses import dataclass
 @dataclass
 class RolEntidad:
     rolId: int
-    name: str
+    nombre: str
     descripcion: str
