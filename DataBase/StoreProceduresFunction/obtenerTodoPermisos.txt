@@ -1,11 +1,10 @@
-DROP FUNCTION obtenertodopermisos() ;
 Create or replace function obtenerTodoPermisos()
-returns  setof Permiso As $$
+returns  setof "Permiso" As $$
 declare
 permiso RECORD;
 Begin
 	---devuelve todos los datos de la tabla Permiso---
-	for PERMISO in Select  * from Permiso loop
+	for PERMISO in Select * from "Permiso" loop
 		return next permiso ;
 	end loop;
 End
