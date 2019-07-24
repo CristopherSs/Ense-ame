@@ -1,1 +1,6 @@
 .idea/
+DataBase/__pycache__/
+FrontEnd/__pycache__/
+Backend/__pycache__/
+Backend/Entidades/__pycache__
+./__pycache__/
