@@ -3,6 +3,6 @@ from dataclasses import dataclass
 
 @dataclass
 class PermisoEntidad:
-    PermisoId = int
+    permisoId = int
     name = str
     descripcion = str
