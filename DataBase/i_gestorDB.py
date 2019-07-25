@@ -1,7 +1,6 @@
+import dataclasses
 from abc import abstractmethod
 from typing import List, Union
-
-from Backend.Entidades.PermisoEntidad import PermisoEntidad
 from DataBase.DBConexion import DB
 
 
@@ -12,7 +11,7 @@ class IGestorDB:
         self.__DB = DB()
 
     @abstractmethod
-    def guardar(self, nuevo_permiso_entidad: PermisoEntidad) -> Union[None, int]:
+    def guardar(self, nueva_entidad: dataclasses) -> Union[None, int]:
         ...
 
     @abstractmethod
@@ -20,5 +19,5 @@ class IGestorDB:
         ...
 
     @abstractmethod
-    def eliminar(self, idPermiso: int) -> Union[int, None]:
+    def eliminar(self, idRecord: int) -> Union[int, None]:
         ...
