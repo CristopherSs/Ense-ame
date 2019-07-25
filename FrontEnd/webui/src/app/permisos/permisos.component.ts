@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Permiso } from '../Entidades/PermisoEntidad';
+import { AddEditComponent } from './add-edit/add-edit.component';
+import { MatDialog, MatDialogConfig } from '@angular/material';
 
 @Component({
   selector: 'app-permisos',
@@ -31,8 +33,17 @@ export class PermisosComponent implements OnInit {
 
   ];
 
-  constructor() { }
+  constructor( private dialog: MatDialog,) { }
 
+  openAddEditComponent(name:string)
+  {
+    const dialogConfig = new MatDialogConfig();
+
+    dialogConfig.disableClose = false;
+    dialogConfig.id = name;
+
+    const dialogRef = this.dialog.open(AddEditComponent, dialogConfig);
+  }
   ngOnInit() {
   }
 
