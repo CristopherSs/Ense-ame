@@ -1,0 +1,9 @@
+Create or replace function EliminarPermiso(idPermisoE integer)
+RETURNS  integer As $$
+Begin
+	---guarda el permiso en la tabla---
+	DELETE FROM public."Permiso" WHERE "idPermiso" = idPermisoE;
+	return idPermisoE;
+End;
+$$
+Language plpgsql;
