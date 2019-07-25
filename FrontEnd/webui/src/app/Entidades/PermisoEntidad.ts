@@ -1,6 +1,6 @@
 export class Permiso
 {
-    idPermiso : number;
+    permisoId : number;
     nombre : string;
     descripcion : string;
 }

@@ -1,18 +1,25 @@
 <div>
   <div class="div-filtro">
-    
+
   </div>
-    <div class="div-tabla">
-    <table class="table table-condensed bg-tabla">
-        <tbody>
-          <tr class="tabla">
-            <th scope="row">N°</th>
-            <td>NOMBRE</td>
-            <td>DESCRIPCION</td>
-            <td>EDITAR</td>
-            <td>ELIMINAR</td>
-          </tr>
-        </tbody>
-      </table> 
-    </div>  
+  <div class="div-tabla">
+    <table class="table table-condensed">
+      <tbody>
+        <tr class="titulo-tabla">
+          <th>No</th>
+          <th>Nombre</th>
+          <th>Descripcion</th>
+          <th>Editar</th>
+          <th>Eliminar</th>
+        </tr>
+        <tr *ngFor="let permiso of permisos">
+          <th>{{permiso.permisoId}}</th>
+          <td>{{permiso.nombre}}</td>
+          <td>{{permiso.descripcion}}</td>
+          <td>EDITAR</td>
+          <td>ELIMINAR</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </div>

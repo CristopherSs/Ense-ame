@@ -12,14 +12,16 @@
     background-color: #2c436c;
 }
 
-.bg-tabla
+.titulo-tabla
 {
     background-color: #2c436c;
+    color: #ffffff;
 }
 .div-tabla
 {
     width: 80%;
     margin-left: 10%;
+    margin-top: 7.5%;
 }
 .div-filtro
 {
