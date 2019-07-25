@@ -1,0 +1,9 @@
+Create or replace function guardarPermiso(nombre varchar(30),descripcion varchar(60))
+RETURNS  integer As $$
+Begin
+	---guarda el permiso en la tabla---
+	INSERT INTO "Permiso" (nombre,descripcion)VALUES (nombre,descripcion);
+	return (SELECT MAX("idPermiso") from "Permiso" );
+End;
+$$
+Language plpgsql;
