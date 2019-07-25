@@ -1,19 +1,15 @@
 from typing import List, Union
 
 from Backend.Entidades.PermisoEntidad import PermisoEntidad
-from DataBase.DBConexion import DB
+from DataBase.i_gestorDB import IGestorDB
 
 
-class PermisoDB:
-    __DB = None
+class PermisoDB(IGestorDB):
 
-    def __init__(self) -> None:
-        self.__DB = DB()
-
-    def guardar_permiso(self, nuevo_permiso_entidad: PermisoEntidad) -> Union[None, int]:
+    def guardar(self, nuevo_permiso_entidad: PermisoEntidad) -> Union[None, int]:
         return self.__DB.llamar_sp('guardarPermiso', [nuevo_permiso_entidad.nombre, nuevo_permiso_entidad.descripcion])
 
-    def obtener_permisos(self) -> Union[List, None]:
+    def obtener(self) -> Union[List, None]:
         valores = self.__DB.llamar_sp('obtenerTodoPermisos', []) or []
         if valores is not None:
             lista_permisos = []
@@ -29,5 +25,5 @@ class PermisoDB:
         lista_permisos = valores
         return lista_permisos
 
-    def eliminarPermiso(self, idPermiso: int) -> Union[int, None]:
+    def eliminar(self, idPermiso: int) -> Union[int, None]:
         return self.__DB.llamar_sp('eliminarPermiso', [idPermiso])
