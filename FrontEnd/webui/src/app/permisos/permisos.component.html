@@ -10,14 +10,26 @@
           <th>Nombre</th>
           <th>Descripcion</th>
           <th>Editar</th>
-          <th>Eliminar</th>
+          <th>
+            <button>
+              +
+            </button>
+          </th>
         </tr>
         <tr *ngFor="let permiso of permisos">
           <th>{{permiso.permisoId}}</th>
           <td>{{permiso.nombre}}</td>
           <td>{{permiso.descripcion}}</td>
-          <td>EDITAR</td>
-          <td>ELIMINAR</td>
+          <td>
+            <button>
+              E
+            </button>
+          </td>
+          <td>
+            <button>
+              -
+            </button>
+          </td>
         </tr>
       </tbody>
     </table>
