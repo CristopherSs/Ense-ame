@@ -1,10 +1,5 @@
-<header class="sticky">
-  <a routerLink="/" class="logo"> <span class="icon-home"></span> <span>{{ title }}</span> </a>
-  <a routerLink="Permisos" routerLinkActive="router-link-active" class="button">
-    <span> Permisos</span>
-  </a>
-</header>
-<main class="container">
-  <router-outlet></router-outlet>
-  <!-- Dynamic content here! -->
-</main>
+<nav>
+  <a routerLink="/">Principal</a> | 
+  <a routerLink="/Permisos">Permisos</a> | 
+</nav>
+<router-outlet></router-outlet>
