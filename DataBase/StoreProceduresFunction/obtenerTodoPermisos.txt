@@ -1,0 +1,12 @@
+Create or replace function obtenerTodoPermisos()
+returns  setof "Permiso" As $$
+declare
+permiso RECORD;
+Begin
+	---devuelve todos los datos de la tabla Permiso---
+	for PERMISO in Select * from "Permiso" loop
+		return next permiso ;
+	end loop;
+End
+$$
+Language plpgsql;
