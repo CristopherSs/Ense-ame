@@ -6,13 +6,15 @@ import { AppComponent } from './app.component';
 import { PermisosComponent } from './permisos/permisos.component';
 import { RolesComponent } from './roles/roles.component';
 import { UsuarioComponent } from './usuario/usuario.component';
+import { AddEditComponent } from './permisos/add-edit/add-edit.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     PermisosComponent,
     RolesComponent,
-    UsuarioComponent
+    UsuarioComponent,
+    AddEditComponent
   ],
   imports: [
     BrowserModule,
