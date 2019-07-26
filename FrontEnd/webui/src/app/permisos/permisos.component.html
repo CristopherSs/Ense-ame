@@ -11,23 +11,23 @@
           <th>Descripcion</th>
           <th>Editar</th>
           <th>
-            <button class="btn btn-default">
-              +
+            <button mat-button>
+              <mat-icon svgIcon='plus' (click)="openAddEditComponent('Crear Permiso')"></mat-icon>
             </button>
           </th>
         </tr>
-        <tr *ngFor="let permiso of permisos">
+        <tr *ngFor="let permiso of permisos" class = "w-t">
           <th>{{permisos.indexOf(permiso)+1}}</th>
           <td>{{permiso.nombre}}</td>
           <td>{{permiso.descripcion}}</td>
           <td>
-            <button type= "button" class="btn btn-default" >
-              E
+            <button mat-button  >
+              <mat-icon svgIcon='edit'></mat-icon>
             </button>
           </td>
           <td>
-            <button type= "button" class="btn btn-default" (click)='eliminarPermiso(permiso.permisoId)'>
-              -
+            <button mat-button (click)='eliminarPermiso(permiso.permisoId)'>
+              <mat-icon svgIcon='delete'></mat-icon>
             </button>
           </td>
         </tr>

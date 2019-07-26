@@ -5,7 +5,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError, map, tap } from 'rxjs/operators';
 import {MessageService} from './../mensajes/mensaje';
 
-const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json','Access-Control-Allow-Origin':'*'}) };
+const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json'}) };
 
 @Injectable({
     providedIn: 'root'
@@ -27,11 +27,11 @@ export class PermisoService {
             );
     }
 
-    addRoom(room: Permiso): Observable<Permiso> {
-        let postRoomUrl = 'http://localhost:30451/room/saveRoom';
-        return this.http.post<Permiso>(postRoomUrl, room, httpOptions)
+    savePermiso(permiso: Permiso): Observable<Permiso> {
+        let postRoomUrl = this.url+'/guardarPermiso';
+        return this.http.post<Permiso>(postRoomUrl, permiso, httpOptions)
             .pipe(
-                catchError(this.handleError('addRoom', room))
+                catchError(this.handleError('savePermiso', permiso))
             );
     }
     deletePermiso(id: number): Observable<{}> {
