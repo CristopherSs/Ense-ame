@@ -1,5 +1,5 @@
 from flask import jsonify, Flask, Response, request
-
+from flask_cors import CORS
 from Backend.API.I_API import API
 from Backend.API.RolAPI import RolAPI
 from Backend.API.UsuarioAPI import UsuarioAPI
@@ -35,6 +35,8 @@ class PermisoAPI(API):
 
 
 app = Flask(__name__)
+cors = CORS(app)
+app.config['CORS_HEADERS'] = 'Content-Type'
 permiso = PermisoAPI()
 permiso.register_url(app)
 rol = RolAPI()
