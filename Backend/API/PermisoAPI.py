@@ -22,9 +22,16 @@ class PermisoAPI(MethodView):
         return jsonify(self.__convertir_a_diccionarios(permisos))
 
     def post(self) -> jsonify:
+<<<<<<< HEAD
         valores_permiso = request.get_json()
         id = self.__DB.guardar(self.__DB.convertidor_entidad(valores_permiso))
         return jsonify(id[0])
+=======
+        print('asdf')
+        valores_permiso = request.get_json()
+        id = self.__DB.guardar(self.__DB.convertidor_entidad(valores_permiso))
+        return jsonify(id)
+>>>>>>> e15c25c3a8a22092fd87610cf625922567eb8c4b
 
     def delete(self, idPermiso: int) -> jsonify:
         self.__DB.eliminar(idPermiso)
