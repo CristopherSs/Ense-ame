@@ -1,4 +1,4 @@
-from typing import List, Union
+from typing import List, Union, Dict
 
 from Backend.Entidades.PermisoEntidad import PermisoEntidad
 from DataBase.i_gestorDB import IGestorDB
@@ -12,7 +12,7 @@ class PermisoDB(IGestorDB):
     def obtener_especifico(self, idPermiso: int) -> Union[None, object]:
         valores = self.DB.llamar_sp('obtenerPermiso', [idPermiso])
         if len(valores) is not 0:
-            return self.__convertidor_entidad(valores[0])
+            return self.convertidor_entidad(valores[0])
         return None
 
     def obtener(self) -> Union[List, None]:
@@ -20,19 +20,19 @@ class PermisoDB(IGestorDB):
         if valores is not None:
             lista_permisos = []
             for datos in valores:
-                lista_permisos.append(self.__convertidor_entidad(datos))
+                lista_permisos.append(self.convertidor_entidad(datos))
             return lista_permisos
         return None
 
     def eliminar(self, idPermiso: int) -> Union[int, None]:
         return self.DB.llamar_sp('eliminarPermiso', [idPermiso])
 
-    def __convertidor_entidad(self, datos_entidad: List) -> object:
-        return PermisoEntidad(
-            **{
-                "permisoId": datos_entidad[0],
-                "nombre": datos_entidad[1],
-                "descripcion": datos_entidad[2],
-            })
-
-
+    def convertidor_entidad(self, datos_entidad: Union[List, Dict]) -> object:
+        if type(datos_entidad) is not dict:
+            return PermisoEntidad(
+                **{
+                    "permisoId": datos_entidad[0],
+                    "nombre": datos_entidad[1],
+                    "descripcion": datos_entidad[2],
+                })
+        return PermisoEntidad(**datos_entidad)

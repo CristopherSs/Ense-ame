@@ -22,7 +22,7 @@ class UsuarioDB(IGestorDB):
                 datos_usuario = list(datos_usuario)
                 rol = self.__obtener_rol(datos_usuario.pop(5))
                 datos_usuario.append(rol)
-                entidad = self.__convertidor_entidad(datos_usuario)
+                entidad = self.convertidor_entidad(datos_usuario)
                 lista_usuarios.append(entidad)
             return lista_usuarios
         return None
@@ -36,7 +36,7 @@ class UsuarioDB(IGestorDB):
         rol.append(rolDB.obtener_especifico(idRol))
         return rol
 
-    def __convertidor_entidad(self, datos_entidad: List) -> object:
+    def convertidor_entidad(self, datos_entidad: List) -> object:
         return UsuarioEntidad(
             **{"ci": datos_entidad[0],
                "nombreCompleto": datos_entidad[1],
