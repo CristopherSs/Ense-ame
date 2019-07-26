@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Permiso } from '../Entidades/PermisoEntidad';
 import { AddEditComponent } from './add-edit/add-edit.component';
+<<<<<<< HEAD
 import { MatDialog, MatDialogConfig } from '@angular/material';
+=======
+>>>>>>> d021a53a1fbd1e4a9c7a124fcdc570649eeb4079
 
 @Component({
   selector: 'app-permisos',
@@ -21,7 +24,11 @@ export class PermisosComponent implements OnInit {
     { "descripcion": "fasfsdfa", "nombre": "perm1", "permisoId": 8 },
     { "descripcion": "fasfsdfa", "nombre": "perm1", "permisoId": 9 },
     { "descripcion": "fasfsdfa", "nombre": "perm1", "permisoId": 10 },
+<<<<<<< HEAD
     { "descripcion": "fasfsdfa", "nombre": "perm1", "permisoId": 11 },
+=======
+    { "descripcion": "fasfsdfa", "nombre": "perm1", "permisoId": 10 },
+>>>>>>> d021a53a1fbd1e4a9c7a124fcdc570649eeb4079
     { "descripcion": "fasfsdfa", "nombre": "perm1", "permisoId": 12 },
     { "descripcion": "fasfsdfa", "nombre": "perm1", "permisoId": 13 },
     { "descripcion": "fasfsdfa", "nombre": "perm1", "permisoId": 14 },
@@ -33,6 +40,7 @@ export class PermisosComponent implements OnInit {
 
   ];
 
+<<<<<<< HEAD
   constructor( private dialog: MatDialog,) { }
 
   openAddEditComponent(name:string)
@@ -43,6 +51,12 @@ export class PermisosComponent implements OnInit {
     dialogConfig.id = name;
 
     const dialogRef = this.dialog.open(AddEditComponent, dialogConfig);
+=======
+  constructor() { }
+
+  openAddEditComponent(name:string)
+  {
+>>>>>>> d021a53a1fbd1e4a9c7a124fcdc570649eeb4079
   }
   ngOnInit() {
   }

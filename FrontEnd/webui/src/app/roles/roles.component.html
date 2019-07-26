@@ -1,3 +1,45 @@
+<<<<<<< HEAD
 <p>
   roles works!
 </p>
+=======
+<div>
+  <div class="div-filtro">
+
+  </div>
+  <div class="div-tabla">
+    <table class="table table-condensed">
+      <tbody>
+        <tr class="titulo-tabla">
+          <th>No</th>
+          <th>Nombre</th>
+          <th>Descripcion</th>
+          <th>Permisos</th>
+          <th>Editar</th>
+          <th>
+            <button class="btn btn-default">
+              +
+            </button>
+          </th>
+        </tr>
+        <tr *ngFor="let rol of roles">
+          <th>{{rol.permisoId}}</th>
+          <td>{{rol.nombre}}</td>
+          <td>{{rol.descripcion}}</td>
+          <td>incrementar lo que sabes para permisos</td>
+          <td>
+            <button type= "button" class="btn btn-default" >
+              E
+            </button>
+          </td>
+          <td>
+            <button>
+              -
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+>>>>>>> d021a53a1fbd1e4a9c7a124fcdc570649eeb4079
