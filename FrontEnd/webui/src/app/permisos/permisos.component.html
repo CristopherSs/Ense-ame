@@ -1,0 +1,37 @@
+<div>
+  <div class="div-filtro">
+
+  </div>
+  <div class="div-tabla">
+    <table class="table table-condensed" >
+      <tbody>
+        <tr class="titulo-tabla">
+          <th>No</th>
+          <th>Nombre</th>
+          <th>Descripcion</th>
+          <th>Editar</th>
+          <th>
+            <button class="btn btn-default">
+              +
+            </button>
+          </th>
+        </tr>
+        <tr *ngFor="let permiso of permisos">
+          <th>{{permisos.indexOf(permiso)+1}}</th>
+          <td>{{permiso.nombre}}</td>
+          <td>{{permiso.descripcion}}</td>
+          <td>
+            <button type= "button" class="btn btn-default" >
+              E
+            </button>
+          </td>
+          <td>
+            <button type= "button" class="btn btn-default" (click)='eliminarPermiso(permiso.permisoId)'>
+              -
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

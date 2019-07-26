@@ -1,0 +1,24 @@
+<div>
+  <div class="titulo-principal-div">
+    <h1 class = "titulo">
+      <img src="./../assets/lapiz-titulo.png" class="img-rounded">
+      {{title}}
+      <small class="text-muted">{{version}}</small>
+    </h1>
+</div>
+<nav class="navbar navbar-expand-lg navbar-dark bg-bar">
+      <a class="navbar-brand" routerLink="/Usuarios">Usuarios</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <a class="navbar-brand" routerLink="/Permisos">Permisos</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <a class="navbar-brand" routerLink="/Roles">Roles</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+</nav>
+<router-outlet></router-outlet>
+</div>

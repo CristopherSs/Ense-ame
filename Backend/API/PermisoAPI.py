@@ -1,5 +1,6 @@
 from flask import jsonify, Flask, Response, request
 
+<<<<<<< HEAD
 from Backend.API.I_API import API
 from Backend.API.RolAPI import RolAPI
 from Backend.API.UsuarioAPI import UsuarioAPI
@@ -8,11 +9,17 @@ from DataBase.permiso import PermisoDB
 
 class PermisoAPI(API):
     __DB = None
+=======
+#from DataBase.permiso import PermisoDB
 
-    def __init__(self) -> None:
-        self.__DB = PermisoDB()
+
+class PermisoAPI(MethodView):
+>>>>>>> d021a53a1fbd1e4a9c7a124fcdc570649eeb4079
+
+    def __init__(self) -> None:...
 
     def get(self) -> jsonify:
+<<<<<<< HEAD
         permisos = self.__DB.obtener()
         if permisos is None:
             return Response(500)
@@ -26,6 +33,13 @@ class PermisoAPI(API):
     def delete(self, idPermiso: int) -> jsonify:
         self.__DB.eliminar(idPermiso)
         return jsonify(idPermiso)
+=======
+       # permisos = self.__DB.obtener_permisos()
+       # if permisos is None:
+       #     return Response(500)
+       # return jsonify(self.__convertir_a_diccionarios(permisos))
+        return jsonify("perra")
+>>>>>>> d021a53a1fbd1e4a9c7a124fcdc570649eeb4079
 
     def register_url(self, aplication: Flask) -> None:
         api = PermisoAPI.as_view('PermisoAPI')

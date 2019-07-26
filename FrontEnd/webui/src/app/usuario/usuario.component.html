@@ -1,0 +1,43 @@
+<div>
+  <div class="div-filtro">
+
+  </div>
+  <div class="div-tabla">
+    <table class="table table-condensed">
+      <tbody>
+        <tr class="titulo-tabla">
+          <th>No</th>
+          <th>Ci</th>
+          <th>Nombre</th>
+          <th>Email</th>
+          <th>Apodo</th>
+          <th>Rol</th>
+          <th>Editar</th>
+          <th>
+            <button class="btn btn-default">
+              +
+            </button>
+          </th>
+        </tr>
+        <tr *ngFor="let usuario of usuarios">
+          <th>{{usuarios.indexOf(usuario)+1}}</th>
+          <td>{{usuario.ci}}</td>
+          <td>{{usuario.nombreCompleto}}</td>
+          <td>{{usuario.email}}</td>
+          <td>{{usuario.apodo}}</td>
+          <td>{{usuario.rol.nombre}}</td>
+          <td>
+            <button type="button" class="btn btn-default">
+              E
+            </button>
+          </td>
+          <td>
+            <button type="button" class="btn btn-default" (click)="eliminarUsuario(usuario.ci)">
+              -
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

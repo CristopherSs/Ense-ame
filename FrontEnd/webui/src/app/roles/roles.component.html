@@ -1,0 +1,43 @@
+<div>
+  <div class="div-filtro">
+
+  </div>
+  <div class="div-tabla">
+    <table class="table table-condensed">
+      <tbody>
+        <tr class="titulo-tabla">
+          <th>No</th>
+          <th>Nombre</th>
+          <th>Descripcion</th>
+          <th>Permisos</th>
+          <th>Editar</th>
+          <th>
+            <button class="btn btn-default">
+              +
+            </button>
+          </th>
+        </tr>
+        <tr *ngFor="let rol of roles">
+          <th>{{roles.indexOf(rol)+1}}</th>
+          <td>{{rol.nombre}}</td>
+          <td>{{rol.descripcion}}</td>
+          <td>
+            <p *ngFor="let permiso of rol.permisos">
+              {{permiso.nombre}}
+            </p>
+          </td>
+          <td>
+            <button type="button" class="btn btn-default">
+              E
+            </button>
+          </td>
+          <td>
+            <button type="button" class="btn btn-default" (click)="eliminarRol(rol.rolId)">
+              -
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
