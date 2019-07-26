@@ -6,7 +6,8 @@ import { PermisosComponent } from './permisos/permisos.component';
 import { RolesComponent } from './roles/roles.component';
 import { UsuarioComponent } from './usuario/usuario.component';
 import { AddEditComponent } from './permisos/add-edit/add-edit.component';
-
+import { HttpClientModule } from '@angular/common/http';
+import { MatTableModule, MatSnackBarModule } from '@angular/material';
 @NgModule({
   declarations: [
     AppComponent,
@@ -17,7 +18,10 @@ import { AddEditComponent } from './permisos/add-edit/add-edit.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule,
+    MatTableModule,
+    MatSnackBarModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

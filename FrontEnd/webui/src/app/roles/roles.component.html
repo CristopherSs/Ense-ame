@@ -1,8 +1,3 @@
-<<<<<<< HEAD
-<p>
-  roles works!
-</p>
-=======
 <div>
   <div class="div-filtro">
 
@@ -23,17 +18,21 @@
           </th>
         </tr>
         <tr *ngFor="let rol of roles">
-          <th>{{rol.permisoId}}</th>
+          <th>{{roles.indexOf(rol)+1}}</th>
           <td>{{rol.nombre}}</td>
           <td>{{rol.descripcion}}</td>
-          <td>incrementar lo que sabes para permisos</td>
           <td>
-            <button type= "button" class="btn btn-default" >
+            <p *ngFor="let permiso of rol.permisos">
+              {{permiso.nombre}}
+            </p>
+          </td>
+          <td>
+            <button type="button" class="btn btn-default">
               E
             </button>
           </td>
           <td>
-            <button>
+            <button type="button" class="btn btn-default" (click)="eliminarRol(rol.rolId)">
               -
             </button>
           </td>
@@ -42,4 +41,3 @@
     </table>
   </div>
 </div>
->>>>>>> d021a53a1fbd1e4a9c7a124fcdc570649eeb4079

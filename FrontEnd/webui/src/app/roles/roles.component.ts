@@ -1,24 +1,30 @@
 import { Component, OnInit } from '@angular/core';
-import { Permiso } from '../Entidades/PermisoEntidad';
+import { Rol } from '../Entidades/RolEntidad';
+import { MatTableDataSource, MatSnackBar } from '@angular/material';
+import { RolService } from '../servicioApi/rolServicio';
 @Component({
   templateUrl: './roles.component.html',
   styleUrls: ['./roles.component.css']
 })
 export class RolesComponent implements OnInit {
 
-  roles : Permiso[] = [ { "descripcion": "fasfsdfa", "nombre": "perm1", "permisoId": 10 },
-  { "descripcion": "fasfsdfa", "nombre": "perm1", "permisoId": 10 },
-  { "descripcion": "fasfsdfa", "nombre": "perm1", "permisoId": 12 },
-  { "descripcion": "fasfsdfa", "nombre": "perm1", "permisoId": 13 },
-  { "descripcion": "fasfsdfa", "nombre": "perm1", "permisoId": 14 },
-  { "descripcion": "fasfsdfa", "nombre": "perm1", "permisoId": 15 },
-  { "descripcion": "fasfsdfa", "nombre": "perm1", "permisoId": 16 },
-  { "descripcion": "fasfsdfa", "nombre": "perm1", "permisoId": 17 },
-  { "descripcion": "fasfsdfa", "nombre": "perm1", "permisoId": 18 },
-  { "descripcion": "fasfsdfa", "nombre": "perm1", "permisoId": 19 },];
-  constructor() { }
+  roles: Rol[] = [];
+  dataSource = new MatTableDataSource<Rol>(this.roles);
 
-  ngOnInit() {
+  constructor(private servicio: RolService,private snackBar: MatSnackBar) { }
+
+  openAddEditComponent(name: string) {
   }
-
+  ngOnInit() {
+    this.obtenerRoles();
+  }
+  obtenerRoles() {
+    this.servicio.getRoles().subscribe(item => {
+      this.roles = (item as unknown as Rol[])
+    });
+  }
+  eliminarRol(idRol: number) {
+    this.servicio.deleteRol(idRol).subscribe(item => 
+      { this.obtenerRoles(); });
+  }
 }

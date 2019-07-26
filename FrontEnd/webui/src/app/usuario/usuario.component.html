@@ -1,8 +1,3 @@
-<<<<<<< HEAD
-<p>
-  usuario works!
-</p>
-=======
 <div>
   <div class="div-filtro">
 
@@ -12,11 +7,12 @@
       <tbody>
         <tr class="titulo-tabla">
           <th>No</th>
-          <th>Nombre</th>
-          <th>Apelliddo</th>
           <th>Ci</th>
+          <th>Nombre</th>
+          <th>Email</th>
+          <th>Apodo</th>
+          <th>Rol</th>
           <th>Editar</th>
-          <th>agregar  </th>
           <th>
             <button class="btn btn-default">
               +
@@ -24,18 +20,19 @@
           </th>
         </tr>
         <tr *ngFor="let usuario of usuarios">
-          <th>{{usuario.permisoId}}</th>
-          <td>{{usuario.nombre}}</td>
-          <td>{{usuario.descripcion}}</td>
-          <td>coloar espacio ci</td>
-          <td>incrementar lo que sabes para permisos</td>
+          <th>{{usuarios.indexOf(usuario)+1}}</th>
+          <td>{{usuario.ci}}</td>
+          <td>{{usuario.nombreCompleto}}</td>
+          <td>{{usuario.email}}</td>
+          <td>{{usuario.apodo}}</td>
+          <td>{{usuario.rol.nombre}}</td>
           <td>
-            <button type= "button" class="btn btn-default" >
+            <button type="button" class="btn btn-default">
               E
             </button>
           </td>
           <td>
-            <button>
+            <button type="button" class="btn btn-default" (click)="eliminarUsuario(usuario.ci)">
               -
             </button>
           </td>
@@ -44,4 +41,3 @@
     </table>
   </div>
 </div>
->>>>>>> d021a53a1fbd1e4a9c7a124fcdc570649eeb4079
