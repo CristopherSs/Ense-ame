@@ -1,12 +1,11 @@
 from typing import List
 
 from flask import jsonify, Flask, Response, request
-from flask.views import MethodView
-
+from Backend.API.I_API import API
 from DataBase.usuario import UsuarioDB
 
 
-class UsuarioAPI(MethodView):
+class UsuarioAPI(API):
     __DB = None
 
     def __init__(self) -> None:
@@ -16,9 +15,9 @@ class UsuarioAPI(MethodView):
         usuarios = self.__DB.obtener()
         if usuarios is None:
             return Response(500)
-        usuarios = self.__convertir_a_diccionarios(usuarios)
+        usuarios = self._convertir_a_diccionarios(usuarios)
         for usuario in usuarios:
-            usuario["rol"] = self.__convertir_a_diccionarios(usuario["rol"])[0]
+            usuario["rol"] = self._convertir_a_diccionarios(usuario["rol"])[0]
             usuario["rol"]["permisos"] = []
         return jsonify(usuarios)
 
@@ -36,9 +35,3 @@ class UsuarioAPI(MethodView):
         aplication.add_url_rule('/obtenerUsuarios', view_func=api, methods=['GET'])
         aplication.add_url_rule('/guardarUsuario', view_func=api, methods=['POST'])
         aplication.add_url_rule('/eliminarUsuario/<idUsuario>', view_func=api, methods=['DELETE'])
-
-    def __convertir_a_diccionarios(self, objetos: List) -> List:
-        lista_de_diccionarios = []
-        for entidad in objetos:
-            lista_de_diccionarios.append(entidad.__dict__)
-        return lista_de_diccionarios

@@ -1,12 +1,10 @@
-from typing import List
-
 from flask import jsonify, Flask, Response, request
-from flask.views import MethodView
 
+from Backend.API.I_API import API
 from DataBase.rol import RolDB
 
 
-class RolAPI(MethodView):
+class RolAPI(API):
     __DB = None
 
     def __init__(self) -> None:
@@ -16,9 +14,9 @@ class RolAPI(MethodView):
         roles = self.__DB.obtener()
         if roles is None:
             return Response(500)
-        roles = self.__convertir_a_diccionarios(roles)
+        roles = self._convertir_a_diccionarios(roles)
         for rol in roles:
-            rol["permisos"] = self.__convertir_a_diccionarios(rol["permisos"])
+            rol["permisos"] = self._convertir_a_diccionarios(rol["permisos"])
         return jsonify(roles)
 
     def post(self) -> jsonify:
@@ -35,9 +33,3 @@ class RolAPI(MethodView):
         aplication.add_url_rule('/obtenerRoles', view_func=api, methods=['GET'])
         aplication.add_url_rule('/guardarRol', view_func=api, methods=['POST'])
         aplication.add_url_rule('/eliminarRol/<idRol>', view_func=api, methods=['DELETE'])
-
-    def __convertir_a_diccionarios(self, objetos: List) -> List:
-        lista_de_diccionarios = []
-        for entidad in objetos:
-            lista_de_diccionarios.append(entidad.__dict__)
-        return lista_de_diccionarios
