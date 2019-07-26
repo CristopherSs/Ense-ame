@@ -4,6 +4,8 @@ from flask import jsonify, Flask, Response, request
 from flask.views import MethodView
 import requests
 
+from Backend.API.RolAPI import RolAPI
+from Backend.API.UsuarioAPI import UsuarioAPI
 from DataBase.permiso import PermisoDB
 
 
@@ -20,10 +22,9 @@ class PermisoAPI(MethodView):
         return jsonify(self.__convertir_a_diccionarios(permisos))
 
     def post(self) -> jsonify:
-        print('asdf')
         valores_permiso = request.get_json()
         id = self.__DB.guardar(self.__DB.convertidor_entidad(valores_permiso))
-        return jsonify(id)
+        return jsonify(id[0])
 
     def delete(self, idPermiso: int) -> jsonify:
         self.__DB.eliminar(idPermiso)
@@ -43,6 +44,10 @@ class PermisoAPI(MethodView):
 
 
 app = Flask(__name__)
-api = PermisoAPI()
-api.register_url(app)
+permiso = PermisoAPI()
+permiso.register_url(app)
+rol = RolAPI()
+rol.register_url(app)
+usu = UsuarioAPI()
+usu.register_url(app)
 app.run('localhost', '5000')
