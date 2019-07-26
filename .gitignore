@@ -4,3 +4,6 @@ FrontEnd/__pycache__/
 Backend/__pycache__/
 Backend/Entidades/__pycache__
 ./__pycache__/
+Backend/API/__pycache__/RolAPI.cpython-37.pyc
+Backend/API/__pycache__/UsuarioAPI.cpython-37.pyc
+Backend/API/__pycache__/I_API.cpython-37.pyc
