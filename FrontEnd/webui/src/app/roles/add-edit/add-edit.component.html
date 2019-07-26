@@ -1,0 +1,21 @@
+<mat-toolbar>
+    <span>Crear Rol</span>
+    <span class="spacer"></span>
+    <button class="btn-close" mat-stroked-button tabIndex="-1" (click)="onClose()">
+        <mat-icon svgIcon="close"></mat-icon>
+    </button>
+</mat-toolbar>
+<div>
+    <form class="createForm">
+        <mat-form-field class="field">
+            <input #name matInput placeholder="Nombre">
+        </mat-form-field>
+        <mat-form-field class="field">
+            <input #description matInput placeholder="Descripcion">
+        </mat-form-field>
+         <button class="btn-close" mat-stroked-button tabIndex="-1"
+            (click)="guardarRol(name.value,description.value)">
+            <mat-icon svgIcon="accept"></mat-icon>
+        </button>
+    </form>
+</div>

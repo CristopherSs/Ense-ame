@@ -12,8 +12,8 @@
           <th>Permisos</th>
           <th>Editar</th>
           <th>
-            <button class="btn btn-default">
-              +
+            <button mat-button>
+              <mat-icon svgIcon='plus' (click)="openAddEditComponent('Crear Rol')"></mat-icon>
             </button>
           </th>
         </tr>
@@ -27,13 +27,13 @@
             </p>
           </td>
           <td>
-            <button type="button" class="btn btn-default">
-              E
+            <button mat-button>
+              <mat-icon svgIcon='edit'></mat-icon>
             </button>
           </td>
           <td>
-            <button type="button" class="btn btn-default" (click)="eliminarRol(rol.rolId)">
-              -
+            <button mat-button (click)="eliminarRol(rol.rolId)">
+              <mat-icon svgIcon='delete'></mat-icon>
             </button>
           </td>
         </tr>

@@ -1,0 +1,43 @@
+<mat-toolbar>
+  <span>{{name}}</span>
+  <span class="spacer"></span>
+  <button class="btn-close" mat-stroked-button tabIndex="-1" (click)="onClose()">
+    <mat-icon svgIcon="close"></mat-icon>
+  </button>
+</mat-toolbar>
+<div>
+  <form class="createForm">
+    <mat-form-field class="field">
+      <input #ci matInput placeholder="CI">
+    </mat-form-field>
+    <mat-form-field class="field">
+      <input #fullName matInput placeholder="Full Name">
+    </mat-form-field>
+    <mat-form-field class="field">
+      <input #email matInput placeholder="Email">
+    </mat-form-field>
+    <mat-form-field class="field">
+      <input #apodo matInput placeholder="Apodo">
+    </mat-form-field>
+    <mat-form-field class="field">
+      <input #password matInput placeholder="Contraseña">
+    </mat-form-field>
+    <mat-form-field class="field">
+      <input #cPassword matInput placeholder="Confirma Contraseña">
+    </mat-form-field>
+    <div>
+      <mat-form-field>
+        <mat-label>Rol*</mat-label>
+        <mat-select #rol>
+          <mat-option *ngFor="let rol of roles">
+            {{rol.nombre}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <button class="btn-close" mat-stroked-button tabIndex="-1"
+      (click)="guardarUsuario(fullName.value,ci.value,apodo.value,email.value,password.value,rol)">
+      <mat-icon svgIcon="accept"></mat-icon>
+    </button>
+  </form>
+</div>

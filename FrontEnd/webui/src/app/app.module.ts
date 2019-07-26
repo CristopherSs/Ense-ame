@@ -6,24 +6,69 @@ import { PermisosComponent } from './permisos/permisos.component';
 import { RolesComponent } from './roles/roles.component';
 import { UsuarioComponent } from './usuario/usuario.component';
 import { AddEditComponent } from './permisos/add-edit/add-edit.component';
+import { UAddEditComponent } from './usuario/add-edit/add-edit.component';
+import { RAddEditComponent } from './roles/add-edit/add-edit.component';
 import { HttpClientModule } from '@angular/common/http';
-import { MatTableModule, MatSnackBarModule } from '@angular/material';
+import {
+  MatSelectModule,
+  MatTableModule,
+  MatPaginatorModule,
+  MatDialogModule,
+  MatToolbarModule,
+  MatInputModule,
+  MatFormFieldModule,
+  MatButtonModule,
+  MatIconModule,
+  MatMenuModule,
+  MatSidenavModule,
+  MatCheckboxModule,
+  MatRadioModule,
+  MatDatepickerModule,
+  MatNativeDateModule,
+  MatSnackBarModule,
+  MatCardModule,
+  MatTabsModule,
+  MatListModule,
+  MatDialogRef,
+  MAT_DIALOG_DATA
+} from '@angular/material';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 @NgModule({
   declarations: [
     AppComponent,
     PermisosComponent,
     RolesComponent,
     UsuarioComponent,
-    AddEditComponent
+    AddEditComponent,
+    UAddEditComponent,
+    RAddEditComponent,
   ],
   imports: [
+    BrowserAnimationsModule,
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    MatTableModule,
+    MatSelectModule,
+    MatDialogModule,
+    MatToolbarModule,
+    MatInputModule,
+    MatFormFieldModule,
+    MatButtonModule,
+    MatIconModule,
+    MatMenuModule,
+    MatSidenavModule,
+    MatCheckboxModule,
+    MatRadioModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
     MatSnackBarModule,
+    MatCardModule,
+    MatTabsModule,
+    MatListModule,
+    MatDialogModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [AddEditComponent, UAddEditComponent, RAddEditComponent]
 })
 export class AppModule { }

@@ -14,8 +14,8 @@
           <th>Rol</th>
           <th>Editar</th>
           <th>
-            <button class="btn btn-default">
-              +
+            <button mat-button>
+              <mat-icon svgIcon='plus' (click) ="openUAddEditComponent('Crear Usuario')" ></mat-icon>
             </button>
           </th>
         </tr>
@@ -27,13 +27,13 @@
           <td>{{usuario.apodo}}</td>
           <td>{{usuario.rol.nombre}}</td>
           <td>
-            <button type="button" class="btn btn-default">
-              E
+            <button mat-button>
+              <mat-icon svgIcon='edit'></mat-icon>
             </button>
           </td>
           <td>
-            <button type="button" class="btn btn-default" (click)="eliminarUsuario(usuario.ci)">
-              -
+            <button mat-button (click)="eliminarUsuario(usuario.ci)">
+              <mat-icon svgIcon='delete'></mat-icon>
             </button>
           </td>
         </tr>

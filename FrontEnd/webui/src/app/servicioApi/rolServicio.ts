@@ -27,11 +27,11 @@ export class RolService {
             );
     }
 
-    addRoom(room: Rol): Observable<Rol> {
-        let postRoomUrl = 'http://localhost:30451/room/saveRoom';
-        return this.http.post<Rol>(postRoomUrl, room, httpOptions)
+    saveRol(rol: Rol): Observable<Rol> {
+        let postRoomUrl = this.url+'/guardarRol';
+        return this.http.post<Rol>(postRoomUrl, rol, httpOptions)
             .pipe(
-                catchError(this.handleError('addRoom', room))
+                catchError(this.handleError('saveRol', rol))
             );
     }
     deleteRol(id: number): Observable<{}> {
