@@ -1,0 +1,11 @@
+Create or replace function obtenerTodoUsuario()
+RETURNS  setof "Usuario" As $$
+declare
+usuario RECORD;
+Begin
+	for Usuario in Select * from "Usuario" loop
+		return next usuario ;
+	end loop;
+End;
+$$
+Language plpgsql;

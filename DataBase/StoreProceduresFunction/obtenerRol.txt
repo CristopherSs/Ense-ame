@@ -1,0 +1,12 @@
+Create or replace function obtenerRol(idRol integer)
+returns  setof "Permiso" As $$
+declare
+rol RECORD;
+Begin
+	---devuelve todos los datos de la tabla Permiso---
+	for ROL in Select * from "Rol" where "idRol" = idRol loop
+		return next rol ;
+	end loop;
+End
+$$
+Language plpgsql;
