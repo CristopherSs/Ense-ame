@@ -1,0 +1,12 @@
+Create or replace function guardarUsuario(ci integer,nombreCompleto varchar(30),
+										  email varchar(60),apodo varchar(15),
+										  contraseña varchar(15),idRol integer)
+RETURNS  integer As $$
+Begin
+	---guarda el permiso en la tabla---
+	INSERT INTO "Usuario" 
+	VALUES (ci,nombreCompleto,email,apodo,contraseña,idRol);
+	return ci;
+End;
+$$
+Language plpgsql;

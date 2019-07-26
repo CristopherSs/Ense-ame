@@ -1,0 +1,11 @@
+Create or replace function obtenerTodoRol()
+RETURNS  setof "Rol" As $$
+declare
+rol RECORD;
+Begin
+	for ROL in Select * from "Rol" loop
+		return next rol ;
+	end loop;
+End;
+$$
+Language plpgsql;

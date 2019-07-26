@@ -1,0 +1,10 @@
+Create or replace function eliminarUsuario(ci integer)
+RETURNS  integer As $$
+Begin
+	---guarda el permiso en la tabla---
+	DELETE FROM public."Usuario" WHERE "idCi" = ci;
+	return ci;
+End;
+$$
+Language plpgsql;
+

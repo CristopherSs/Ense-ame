@@ -1,0 +1,11 @@
+Create or replace function obtenerTodoPermisoRol(idRol integer)
+RETURNS setof integer As $$
+declare
+id_permiso integer;
+Begin
+	for ID_PERMISO in Select "idPermiso" from "Rol_Permiso" where "idRol"=idRol loop
+		return next id_permiso ;
+	end loop;
+End;
+$$
+Language plpgsql;

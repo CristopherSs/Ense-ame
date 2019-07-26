@@ -19,7 +19,7 @@ class DB:
         try:
             row = self.__cur.fetchall()
             self.__conn.commit()
-        except psycopg2.ProgrammingError:
+        except Exception:
             row = None
         finally:
             self.__cur.close()

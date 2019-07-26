@@ -1,0 +1,9 @@
+Create or replace function guardarRol(nombre varchar(30),descripcion varchar(60))
+RETURNS  integer As $$
+Begin
+	---guarda el permiso en la tabla---
+	INSERT INTO "Rol" (nombre,descripcion)VALUES (nombre,descripcion);
+	return (SELECT MAX("idRol") from "Rol" );
+End;
+$$
+Language plpgsql;

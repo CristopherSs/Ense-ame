@@ -1,0 +1,10 @@
+Create or replace function eliminarRol(idRol integer)
+RETURNS  integer As $$
+Begin
+	---guarda el permiso en la tabla---
+	DELETE FROM public."Rol" WHERE "idRol" = idRol;
+	return idRol;
+End;
+$$
+Language plpgsql;
+
