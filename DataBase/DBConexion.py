@@ -7,7 +7,7 @@ import psycopg2
 class DB:
 
     def __init__(self) -> None:
-        with open('./config.json') as file:
+        with open('./../../DataBase/config.json') as file:
             data = json.load(file)
         self.__connstr = "host=%s port=%s user=%s password=%s dbname=%s" % (
             data["host"], data["port"], data["user"], data["password"], data["database"])

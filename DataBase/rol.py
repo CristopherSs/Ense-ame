@@ -19,7 +19,7 @@ class RolDB(IGestorDB):
                 datos_rol = list(datos_rol)
                 permisos = self.__obtener_permisos(valores_permiso_rol)
                 datos_rol.append(permisos)
-                entidad = self.__convertidor_entidad(datos_rol)
+                entidad = self.convertidor_entidad(datos_rol)
                 lista_roles.append(entidad)
             return lista_roles
         return None
@@ -34,7 +34,7 @@ class RolDB(IGestorDB):
             permisos_id = self.DB.llamar_sp('obtenerTodoPermisoRol', [datos[0]])
             permisos = self.__obtener_permisos(permisos_id)
             datos.append(permisos)
-            return self.__convertidor_entidad(datos)
+            return self.convertidor_entidad(datos)
         return None
 
     def __obtener_permisos(self, idPermisos: List) -> List:
@@ -44,7 +44,7 @@ class RolDB(IGestorDB):
             permisos.append(permisosDB.obtener_especifico(idPermiso))
         return permisos
 
-    def __convertidor_entidad(self, datos_entidad: List) -> object:
+    def convertidor_entidad(self, datos_entidad: List) -> object:
         return RolEntidad(
             **{
                 "rolId": datos_entidad[0],

@@ -26,5 +26,5 @@ class IGestorDB:
         ...
 
     @abstractmethod
-    def __convertidor_entidad(self, datos_entidad: List) -> object:
+    def convertidor_entidad(self, datos_entidad: List) -> object:
         ...
