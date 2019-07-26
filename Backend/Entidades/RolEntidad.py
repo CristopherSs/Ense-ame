@@ -8,4 +8,4 @@ class RolEntidad:
     rolId: int
     nombre: str
     descripcion: str
-    permisos: [PermisoEntidad]
+    permisos: [PermisoEntidad] = None
