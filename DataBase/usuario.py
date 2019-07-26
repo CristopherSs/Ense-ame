@@ -1,5 +1,6 @@
-from typing import List, Union
+from typing import List, Union, Dict
 
+from Backend.Entidades.RolEntidad import RolEntidad
 from Backend.Entidades.UsuarioEntidad import UsuarioEntidad
 from DataBase.i_gestorDB import IGestorDB
 from DataBase.rol import RolDB
@@ -36,11 +37,14 @@ class UsuarioDB(IGestorDB):
         rol.append(rolDB.obtener_especifico(idRol))
         return rol
 
-    def convertidor_entidad(self, datos_entidad: List) -> object:
-        return UsuarioEntidad(
-            **{"ci": datos_entidad[0],
-               "nombreCompleto": datos_entidad[1],
-               "email": datos_entidad[2],
-               "apodo": datos_entidad[3],
-               "password": datos_entidad[4],
-               "rol": datos_entidad[5]})
+    def convertidor_entidad(self, datos_entidad: Union[List, Dict]) -> object:
+        if type(datos_entidad) is not dict:
+            return UsuarioEntidad(
+                **{"ci": datos_entidad[0],
+                   "nombreCompleto": datos_entidad[1],
+                   "email": datos_entidad[2],
+                   "apodo": datos_entidad[3],
+                   "password": datos_entidad[4],
+                   "rol": datos_entidad[5]})
+        datos_entidad["rol"] = RolEntidad(**datos_entidad["rol"])
+        return UsuarioEntidad(**datos_entidad)
