@@ -27,15 +27,22 @@ class PermisoAPI(API):
         self.__DB.eliminar(idPermiso)
         return jsonify(idPermiso)
 
+    def options(self) -> jsonify:
+        response = Response()
+        response.headers.add('Access-Control-Allow-Origin', '*')
+        response.headers.add('Access-Control-Allow-Headers', 'Content-Type, Authorization')
+        response.headers.add('Access-Control-Allow-Methods', 'GET, PUT, POST, DELETE,OPTIONS')
+        return response
+
     def register_url(self, aplication: Flask) -> None:
         api = PermisoAPI.as_view('PermisoAPI')
         aplication.add_url_rule('/obtenerPermisos', view_func=api, methods=['GET'])
-        aplication.add_url_rule('/guardarPermiso', view_func=api, methods=['POST'])
+        aplication.add_url_rule('/guardarPermiso', view_func=api, methods=['POST', 'OPTIONS'])
         aplication.add_url_rule('/eliminarPermiso/<idPermiso>', view_func=api, methods=['DELETE'])
 
 
 app = Flask(__name__)
-cors = CORS(app)
+cors = CORS(app,)
 app.config['CORS_HEADERS'] = 'Content-Type'
 permiso = PermisoAPI()
 permiso.register_url(app)
