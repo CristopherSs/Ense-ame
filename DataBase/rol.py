@@ -1,4 +1,4 @@
-from typing import List, Union, Tuple
+from typing import List, Union, Tuple, Dict
 
 from Backend.Entidades.RolEntidad import RolEntidad
 from DataBase.i_gestorDB import IGestorDB
@@ -44,12 +44,13 @@ class RolDB(IGestorDB):
             permisos.append(permisosDB.obtener_especifico(idPermiso))
         return permisos
 
-    def convertidor_entidad(self, datos_entidad: List) -> object:
-        return RolEntidad(
-            **{
-                "rolId": datos_entidad[0],
-                "nombre": datos_entidad[1],
-                "descripcion": datos_entidad[2],
-                "permisos": datos_entidad[3]
-            })
-
+    def convertidor_entidad(self, datos_entidad: Union[List, Dict]) -> object:
+        if type(datos_entidad) is not dict:
+            return RolEntidad(
+                **{
+                    "rolId": datos_entidad[0],
+                    "nombre": datos_entidad[1],
+                    "descripcion": datos_entidad[2],
+                    "permisos": datos_entidad[3]
+                })
+        return RolEntidad(**datos_entidad)
