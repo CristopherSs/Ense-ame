@@ -1,3 +1,41 @@
-<p>
-  usuario works!
-</p>
+<div>
+  <div class="div-filtro">
+
+  </div>
+  <div class="div-tabla">
+    <table class="table table-condensed">
+      <tbody>
+        <tr class="titulo-tabla">
+          <th>No</th>
+          <th>Nombre</th>
+          <th>Apelliddo</th>
+          <th>Ci</th>
+          <th>Editar</th>
+          <th>agregar  </th>
+          <th>
+            <button class="btn btn-default">
+              +
+            </button>
+          </th>
+        </tr>
+        <tr *ngFor="let usuario of usuarios">
+          <th>{{usuario.permisoId}}</th>
+          <td>{{usuario.nombre}}</td>
+          <td>{{usuario.descripcion}}</td>
+          <td>coloar espacio ci</td>
+          <td>incrementar lo que sabes para permisos</td>
+          <td>
+            <button type= "button" class="btn btn-default" >
+              E
+            </button>
+          </td>
+          <td>
+            <button>
+              -
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

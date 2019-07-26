@@ -3,20 +3,19 @@ from typing import List
 from flask import jsonify, Flask, Response
 from flask.views import MethodView
 
-from DataBase.permiso import PermisoDB
+#from DataBase.permiso import PermisoDB
 
 
 class PermisoAPI(MethodView):
-    __DB = None
 
-    def __init__(self) -> None:
-        self.__DB = PermisoDB()
+    def __init__(self) -> None:...
 
     def get(self) -> jsonify:
-        permisos = self.__DB.obtener_permisos()
-        if permisos is None:
-            return Response(500)
-        return jsonify(self.__convertir_a_diccionarios(permisos))
+       # permisos = self.__DB.obtener_permisos()
+       # if permisos is None:
+       #     return Response(500)
+       # return jsonify(self.__convertir_a_diccionarios(permisos))
+        return jsonify("perra")
 
     def register_url(self, aplication: Flask) -> None:
         api = PermisoAPI.as_view('PermisoAPI')
