@@ -26,26 +26,32 @@ export class UAddEditComponent implements OnInit {
   guardarUsuario(fullName: string, ci: number, apodo: string,
     email: string, password: string, rol: Rol, cPassword: string) {
     const usuario = new Usuario()
-    if (password == cPassword) {
-      usuario.nombreCompleto = fullName;
-      usuario.ci = ci;
-      usuario.password = password;
-      usuario.email = email;
-      usuario.apodo = apodo;
-      usuario.rol = rol;
-      this.uService.guardarUsuario(usuario).subscribe(item => {
-        console.log(item);
-        if (!item) {
-          this.snackBar.open('El documento ya existe ', 'OK', { duration: 5000 });
-        } else {
-          this.main.obtenerUsuarios();
-          this.snackBar.open('Usuario Agregrado', 'OK', { duration: 5000 });
-          this.onClose();
-        }
-      })
+    console.log(ci);
+    if(fullName && ci  && apodo && email && password && rol && cPassword != ''){
+      if (password == cPassword) {
+        usuario.nombreCompleto = fullName;
+        usuario.ci = ci;
+        usuario.password = password;
+        usuario.email = email;
+        usuario.apodo = apodo;
+        usuario.rol = rol;
+        this.uService.guardarUsuario(usuario).subscribe(item => {
+          console.log(item);
+          if (!item) {
+            this.snackBar.open('El documento ya existe ', 'OK', { duration: 5000 });
+          } else {
+            this.main.obtenerUsuarios();
+            this.snackBar.open('Usuario Agregrado', 'OK', { duration: 5000 });
+            this.onClose();
+          }
+      })}else{
+        this.snackBar.open('Las contraseñas no coinciden', 'OK', { duration: 5000 });
+
+      }
+    
 
     } else {
-      this.snackBar.open('Las contraseñas no coinciden', 'OK', { duration: 5000 });
+      this.snackBar.open('Los campos no deben ser vacios', 'OK', { duration: 5000 });
     }
   }
   onClose() {

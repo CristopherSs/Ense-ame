@@ -34,7 +34,9 @@ export class RAddEditComponent implements OnInit {
   guardarRol(nombre: string, descripcion: string) {
     var rol = new Rol()
     rol.rolId = 0
-    if (nombre && descripcion != ''&& this.perSelecionados.value.lenght != 0) {
+    if (nombre && descripcion != '') {
+      console.log(this.perSelecionados.value)
+      if (this.perSelecionados.value != null){
       rol.nombre = nombre
       rol.descripcion = descripcion
       rol.permisos = this.perSelecionados.value
@@ -44,9 +46,12 @@ export class RAddEditComponent implements OnInit {
       this.snackBar.open('Rol Agregrado', 'OK', { duration: 5000 });
       this.onClose()
     } else {
-      this.snackBar.open('Los campos no deben estar vacios', 'OK', { duration: 5000 });
+      this.snackBar.open('Debes agregar permiso ', 'OK', { duration: 5000 });
     }
+  }else{
+    this.snackBar.open('Los campos no deben estar vacios', 'OK', { duration: 5000 });
   }
 
+  }
 }
 

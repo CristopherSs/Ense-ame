@@ -11,7 +11,7 @@ const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/js
     providedIn: 'root'
 })
 export class PermisoService {
-    url = 'http://192.168.0.26:5000'
+    url = 'http://192.168.43.17:5000'
     constructor(
         private http: HttpClient,
         private messageService: MessageService,
