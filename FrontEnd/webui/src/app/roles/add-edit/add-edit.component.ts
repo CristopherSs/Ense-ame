@@ -18,15 +18,15 @@ export class RAddEditComponent implements OnInit {
   main: RolesComponent;
   name: string = 'Crear Rol';
   constructor(private snackBar: MatSnackBar, private servicio: RolService,
-    private perServicio:PermisoService,
-     public dialogRef: MatDialogRef<RAddEditComponent>, ) {
+    private perServicio: PermisoService,
+    public dialogRef: MatDialogRef<RAddEditComponent>, ) {
     this.main = this.dialogRef._containerInstance._config.data
   }
   onClose() {
     this.dialogRef.close()
   }
   ngOnInit() {
-    this.perServicio.getPermisos().subscribe(item=>{
+    this.perServicio.getPermisos().subscribe(item => {
       this.permisos = item as unknown as Permiso[];
     })
   }
@@ -34,15 +34,19 @@ export class RAddEditComponent implements OnInit {
   guardarRol(nombre: string, descripcion: string) {
     var rol = new Rol()
     rol.rolId = 0
-    rol.nombre = nombre
-    rol.descripcion = descripcion
-    rol.permisos = this.perSelecionados.value
-    this.servicio.saveRol(rol).subscribe(item => {
-      this.main.obtenerRoles();
-    });
-    this.snackBar.open('Rol Agregrado', 'OK', { duration: 5000 });
-    this.onClose()
+    if (nombre && descripcion != ''&& this.perSelecionados.value.lenght != 0) {
+      rol.nombre = nombre
+      rol.descripcion = descripcion
+      rol.permisos = this.perSelecionados.value
+      this.servicio.saveRol(rol).subscribe(item => {
+        this.main.obtenerRoles();
+      });
+      this.snackBar.open('Rol Agregrado', 'OK', { duration: 5000 });
+      this.onClose()
+    } else {
+      this.snackBar.open('Los campos no deben estar vacios', 'OK', { duration: 5000 });
+    }
   }
-  
+
 }
 

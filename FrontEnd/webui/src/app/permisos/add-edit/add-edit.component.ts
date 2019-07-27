@@ -23,14 +23,18 @@ export class AddEditComponent implements OnInit {
   guardarPermiso(nombre: string, descripcion: string) {
     var per = new Permiso()
     per.permisoId = 0
-    per.nombre = nombre
-    per.descripcion = descripcion
-    console.log(per)
-    this.servicio.savePermiso(per).subscribe(item => {
-      this.main.obtenerPermisos();
-    });
-    this.snackBar.open('Permiso Agregrado', 'OK', { duration: 5000 });
-    this.onClose();
+    if (nombre && descripcion != '') {
+      per.nombre = nombre
+      per.descripcion = descripcion
+      console.log(per)
+      this.servicio.savePermiso(per).subscribe(item => {
+        this.main.obtenerPermisos();
+      });
+      this.snackBar.open('Permiso Agregrado', 'OK', { duration: 5000 });
+      this.onClose();
+    } else {
+      this.snackBar.open('Los campos no deben estar vacios', 'OK', { duration: 5000 });
+    }
   }
   onClose() {
     this.dialogRef.close()
