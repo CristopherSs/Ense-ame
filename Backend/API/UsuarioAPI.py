@@ -21,12 +21,13 @@ class UsuarioAPI(API):
             usuario["rol"]["permisos"] = []
         return jsonify(usuarios)
 
-    def post(self) -> jsonify:
+    def post(self) -> str:
         valores_usuario = request.get_json()
         if self.__DB.obtener_especifico(int(valores_usuario["ci"])) is False:
             id = self.__DB.guardar(self.__DB.convertidor_entidad(valores_usuario))
-            return jsonify(id[0])
-        return jsonify()
+            print(id)
+            return str(id[0][0])
+        return ''
 
     def delete(self, idUsuario: int) -> jsonify:
         self.__DB.eliminar(idUsuario)

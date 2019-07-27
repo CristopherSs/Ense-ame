@@ -14,7 +14,7 @@ export class UAddEditComponent implements OnInit {
   main: UsuarioComponent;
   name: string;
   roles: Rol[];
-  bandera : Object[];
+  bandera: Object[];
   constructor(private rService: RolService, private uService: UsuarioService,
     private snackBar: MatSnackBar, public dialogRef: MatDialogRef<UAddEditComponent>, ) {
     this.name = this.dialogRef.id
@@ -26,7 +26,7 @@ export class UAddEditComponent implements OnInit {
   guardarUsuario(fullName: string, ci: number, apodo: string,
     email: string, password: string, rol: Rol, cPassword: string) {
     const usuario = new Usuario()
-    if (password == cPassword ) {
+    if (password == cPassword) {
       usuario.nombreCompleto = fullName;
       usuario.ci = ci;
       usuario.password = password;
@@ -34,10 +34,16 @@ export class UAddEditComponent implements OnInit {
       usuario.apodo = apodo;
       usuario.rol = rol;
       this.uService.guardarUsuario(usuario).subscribe(item => {
-        this.main.obtenerUsuarios();
+        console.log(item);
+        if (!item) {
+          this.snackBar.open('El documento ya existe ', 'OK', { duration: 5000 });
+        } else {
+          this.main.obtenerUsuarios();
+          this.snackBar.open('Usuario Agregrado', 'OK', { duration: 5000 });
+          this.onClose();
+        }
       })
-      this.snackBar.open('Usuario Agregrado', 'OK', { duration: 5000 });
-      this.onClose();
+
     } else {
       this.snackBar.open('Las contraseñas no coinciden', 'OK', { duration: 5000 });
     }
