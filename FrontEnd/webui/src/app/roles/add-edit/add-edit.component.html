@@ -13,8 +13,15 @@
         <mat-form-field class="field">
             <input #description matInput placeholder="Descripcion">
         </mat-form-field>
-         <button class="btn-close" mat-stroked-button tabIndex="-1"
-            (click)="guardarRol(name.value,description.value)">
+        <div>
+            <mat-form-field>
+                <mat-label>Permisos*</mat-label>
+                <mat-select [formControl]="perSelecionados" multiple>
+                    <mat-option *ngFor="let permiso of permisos" [value]="permiso">{{permiso.nombre}}</mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+        <button class="btn-close" mat-stroked-button tabIndex="-1" (click)="guardarRol(name.value,description.value)">
             <mat-icon svgIcon="accept"></mat-icon>
         </button>
     </form>

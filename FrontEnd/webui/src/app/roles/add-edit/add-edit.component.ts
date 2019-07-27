@@ -3,6 +3,9 @@ import { Rol } from 'src/app/Entidades/RolEntidad';
 import { MatTableDataSource, MatSnackBar, MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material';
 import { RolService } from 'src/app/servicioApi/rolServicio';
 import { RolesComponent } from '../roles.component';
+import { PermisoService } from 'src/app/servicioApi/permisoServicio';
+import { Permiso } from 'src/app/Entidades/PermisoEntidad';
+import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-add-edit',
@@ -10,10 +13,12 @@ import { RolesComponent } from '../roles.component';
   styleUrls: ['./add-edit.component.css']
 })
 export class RAddEditComponent implements OnInit {
-
+  perSelecionados = new FormControl();
+  permisos: Permiso[];
   main: RolesComponent;
   name: string = 'Crear Rol';
   constructor(private snackBar: MatSnackBar, private servicio: RolService,
+    private perServicio:PermisoService,
      public dialogRef: MatDialogRef<RAddEditComponent>, ) {
     this.main = this.dialogRef._containerInstance._config.data
   }
@@ -21,6 +26,9 @@ export class RAddEditComponent implements OnInit {
     this.dialogRef.close()
   }
   ngOnInit() {
+    this.perServicio.getPermisos().subscribe(item=>{
+      this.permisos = item as unknown as Permiso[];
+    })
   }
 
   guardarRol(nombre: string, descripcion: string) {
@@ -28,10 +36,12 @@ export class RAddEditComponent implements OnInit {
     rol.rolId = 0
     rol.nombre = nombre
     rol.descripcion = descripcion
-    rol.permisos = []
-    console.log(rol)
-    this.servicio.saveRol(rol).subscribe(item => {});
-    this.snackBar.open('Rol Agregrado', 'OK', { duration: 9000000 });
+    rol.permisos = this.perSelecionados.value
+    this.servicio.saveRol(rol).subscribe(item => {
+      this.main.obtenerRoles();
+    });
+    this.snackBar.open('Rol Agregrado', 'OK', { duration: 5000 });
+    this.onClose()
   }
   
 }

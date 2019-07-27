@@ -9,6 +9,7 @@ import { AddEditComponent } from './permisos/add-edit/add-edit.component';
 import { UAddEditComponent } from './usuario/add-edit/add-edit.component';
 import { RAddEditComponent } from './roles/add-edit/add-edit.component';
 import { HttpClientModule } from '@angular/common/http';
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import {
   MatSelectModule,
   MatTableModule,
@@ -44,6 +45,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     RAddEditComponent,
   ],
   imports: [
+    FormsModule,
+    ReactiveFormsModule,
     BrowserAnimationsModule,
     BrowserModule,
     AppRoutingModule,

@@ -26,8 +26,11 @@ export class AddEditComponent implements OnInit {
     per.nombre = nombre
     per.descripcion = descripcion
     console.log(per)
-    this.servicio.savePermiso(per).subscribe(item => {});
-    this.snackBar.open('Permiso Agregrado', 'OK', { duration: 9000000 });
+    this.servicio.savePermiso(per).subscribe(item => {
+      this.main.obtenerPermisos();
+    });
+    this.snackBar.open('Permiso Agregrado', 'OK', { duration: 5000 });
+    this.onClose();
   }
   onClose() {
     this.dialogRef.close()

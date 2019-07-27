@@ -11,12 +11,11 @@ const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/js
     providedIn: 'root'
 })
 export class RolService {
-    url = 'http://localhost:5000'
+    url = 'http://192.168.0.26:5000'
     constructor(
         private http: HttpClient,
         private messageService: MessageService,
     ) {
-        var url = 'http://localhost:5000'
     }
 
     getRoles(): Observable<Rol[]> {

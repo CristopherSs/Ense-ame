@@ -11,27 +11,26 @@ const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/js
     providedIn: 'root'
 })
 export class UsuarioService {
-    url = 'http://localhost:5000'
+    url = 'http://192.168.0.26:5000'
     constructor(
         private http: HttpClient,
         private messageService: MessageService,
     ) {
-        var url = 'http://localhost:5000'
     }
 
     getUsuarios(): Observable<Usuario[]> {
         let getUsuariosUrl = this.url + '/obtenerUsuarios';
         return this.http.get<Usuario[]>(getUsuariosUrl, httpOptions)
             .pipe(tap(_ => this.log('fetched Error Al Cargar')),
-                catchError(this.handleError<Usuario[]>('getPermisos', []))
+                catchError(this.handleError<Usuario[]>('getUsuarios', []))
             );
     }
 
-    addRoom(room: Usuario): Observable<Usuario> {
-        let postRoomUrl = 'http://localhost:30451/room/saveRoom';
-        return this.http.post<Usuario>(postRoomUrl, room, httpOptions)
+    guardarUsuario(usuario: Usuario): Observable<Usuario> {
+        let postRoomUrl = this.url+'/guardarUsuario';
+        return this.http.post<Usuario>(postRoomUrl, usuario, httpOptions)
             .pipe(
-                catchError(this.handleError('addRoom', room))
+                catchError(this.handleError('guardarUsuario', usuario))
             );
     }
     deleteUsuario(id: number): Observable<{}> {

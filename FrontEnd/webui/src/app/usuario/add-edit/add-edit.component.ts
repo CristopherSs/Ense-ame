@@ -4,6 +4,7 @@ import { UsuarioService } from './../../servicioApi/usuarioServicio';
 import { MatSnackBar, MatDialogRef } from '@angular/material';
 import { UsuarioComponent } from '../usuario.component';
 import { Rol } from 'src/app/Entidades/RolEntidad';
+import { Usuario } from 'src/app/Entidades/UsuarioEntidad';
 @Component({
   selector: 'app-add-edit',
   templateUrl: './add-edit.component.html',
@@ -11,7 +12,7 @@ import { Rol } from 'src/app/Entidades/RolEntidad';
 })
 export class UAddEditComponent implements OnInit {
   main: UsuarioComponent;
-  name: string ;
+  name: string;
   roles: Rol[];
   constructor(private rService: RolService, private uService: UsuarioService,
     private snackBar: MatSnackBar, public dialogRef: MatDialogRef<UAddEditComponent>, ) {
@@ -22,9 +23,23 @@ export class UAddEditComponent implements OnInit {
   ngOnInit() {
   }
   guardarUsuario(fullName: string, ci: number, apodo: string,
-    email: string, password: string, rol: Rol) {
-    console.log(rol);
-    this.dialogRef.close();
+    email: string, password: string, rol: Rol, cPassword: string) {
+    const usuario = new Usuario()
+    if (password == cPassword ) {
+      usuario.nombreCompleto = fullName;
+      usuario.ci = ci;
+      usuario.password = password;
+      usuario.email = email;
+      usuario.apodo = apodo;
+      usuario.rol = rol;
+      this.uService.guardarUsuario(usuario).subscribe(item => {
+        this.main.obtenerUsuarios();
+      })
+      this.snackBar.open('Usuario Agregrado', 'OK', { duration: 5000 });
+      this.onClose();
+    } else {
+      this.snackBar.open('Las contraseñas no coinciden', 'OK', { duration: 5000 });
+    }
   }
   onClose() {
     this.dialogRef.close();

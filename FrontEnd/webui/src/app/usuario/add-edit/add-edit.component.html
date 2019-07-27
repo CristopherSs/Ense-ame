@@ -8,7 +8,7 @@
 <div>
   <form class="createForm">
     <mat-form-field class="field">
-      <input #ci matInput placeholder="CI">
+      <input type="number" #ci matInput placeholder="CI">
     </mat-form-field>
     <mat-form-field class="field">
       <input #fullName matInput placeholder="Full Name">
@@ -20,23 +20,23 @@
       <input #apodo matInput placeholder="Apodo">
     </mat-form-field>
     <mat-form-field class="field">
-      <input #password matInput placeholder="Contraseña">
+      <input type="password" #password matInput placeholder="Contraseña">
     </mat-form-field>
     <mat-form-field class="field">
-      <input #cPassword matInput placeholder="Confirma Contraseña">
+      <input type="password" #cPassword matInput placeholder="Confirma Contraseña">
     </mat-form-field>
     <div>
       <mat-form-field>
         <mat-label>Rol*</mat-label>
         <mat-select #rol>
-          <mat-option *ngFor="let rol of roles">
+          <mat-option *ngFor="let rol of roles" [value]="rol">
             {{rol.nombre}}
           </mat-option>
         </mat-select>
       </mat-form-field>
     </div>
     <button class="btn-close" mat-stroked-button tabIndex="-1"
-      (click)="guardarUsuario(fullName.value,ci.value,apodo.value,email.value,password.value,rol)">
+      (click)="guardarUsuario(fullName.value,ci.value,apodo.value,email.value,password.value,rol.value,cPassword.value)">
       <mat-icon svgIcon="accept"></mat-icon>
     </button>
   </form>

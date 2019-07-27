@@ -8,7 +8,11 @@ from DataBase.permiso import PermisoDB
 class RolDB(IGestorDB):
 
     def guardar(self, nuevo_rol_entidad: RolEntidad) -> Union[None, int]:
-        return self.DB.llamar_sp('guardarRol', [nuevo_rol_entidad.nombre, nuevo_rol_entidad.descripcion])
+        id_rol = self.DB.llamar_sp('guardarRol', [nuevo_rol_entidad.nombre, nuevo_rol_entidad.descripcion])
+        if id_rol is not None:
+            for permiso in nuevo_rol_entidad.permisos:
+                self.DB.llamar_sp('guardarRolPermiso', [id_rol[0], permiso["permisoId"]])
+        return id_rol
 
     def obtener(self) -> Union[List, None]:
         valores_roles = self.DB.llamar_sp('obtenerTodoRol', [])
