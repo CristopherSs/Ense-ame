@@ -297,6 +297,25 @@ $$;
 ALTER FUNCTION public.obtenertodousuario() OWNER TO postgres;
 
 --
+-- Name: obtenerusuario(integer); Type: FUNCTION; Schema: public; Owner: postgres
+--
+
+CREATE FUNCTION public.obtenerusuario(ci integer) RETURNS SETOF public."Usuario"
+    LANGUAGE plpgsql
+    AS $$
+declare
+rol RECORD;
+Begin
+	for ROL in Select * from "Usuario" where "idCi" = ci loop
+		return next rol ;
+	end loop;
+End
+$$;
+
+
+ALTER FUNCTION public.obtenerusuario(ci integer) OWNER TO postgres;
+
+--
 -- Name: Permiso_idPermiso_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -380,6 +399,7 @@ COPY public."Permiso" ("idPermiso", nombre, descripcion) FROM stdin;
 --
 
 COPY public."Rol" ("idRol", nombre, descripcion) FROM stdin;
+14	rol1	rol1
 \.
 
 
@@ -388,6 +408,7 @@ COPY public."Rol" ("idRol", nombre, descripcion) FROM stdin;
 --
 
 COPY public."Rol_Permiso" ("idRol", "idPermiso") FROM stdin;
+14	43
 \.
 
 
@@ -396,6 +417,8 @@ COPY public."Rol_Permiso" ("idRol", "idPermiso") FROM stdin;
 --
 
 COPY public."Usuario" ("idCi", "nombreCompleto", email, "nombreUsuario", "contraseña", "idRol") FROM stdin;
+13					14
+123					14
 \.
 
 
@@ -410,7 +433,7 @@ SELECT pg_catalog.setval('public."Permiso_idPermiso_seq"', 43, true);
 -- Name: Rol_idRol_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public."Rol_idRol_seq"', 13, true);
+SELECT pg_catalog.setval('public."Rol_idRol_seq"', 14, true);
 
 
 --

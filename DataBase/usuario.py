@@ -28,6 +28,12 @@ class UsuarioDB(IGestorDB):
             return lista_usuarios
         return None
 
+    def obtener_especifico(self, idRecord: int) -> Union[None, object]:
+        valores_usuario = self.DB.llamar_sp('obtenerUsuario', [idRecord])
+        if len(valores_usuario) is 0:
+            return False
+        return True
+
     def eliminar(self, idPermiso: int) -> Union[int, None]:
         return self.DB.llamar_sp('eliminarUsuario', [idPermiso])
 

@@ -23,8 +23,10 @@ class UsuarioAPI(API):
 
     def post(self) -> jsonify:
         valores_usuario = request.get_json()
-        id = self.__DB.guardar(self.__DB.convertidor_entidad(valores_usuario))
-        return jsonify(id[0])
+        if self.__DB.obtener_especifico(int(valores_usuario["ci"])) is False:
+            id = self.__DB.guardar(self.__DB.convertidor_entidad(valores_usuario))
+            return jsonify(id[0])
+        return jsonify()
 
     def delete(self, idUsuario: int) -> jsonify:
         self.__DB.eliminar(idUsuario)

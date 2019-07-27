@@ -14,6 +14,7 @@ export class UAddEditComponent implements OnInit {
   main: UsuarioComponent;
   name: string;
   roles: Rol[];
+  bandera : Object[];
   constructor(private rService: RolService, private uService: UsuarioService,
     private snackBar: MatSnackBar, public dialogRef: MatDialogRef<UAddEditComponent>, ) {
     this.name = this.dialogRef.id
