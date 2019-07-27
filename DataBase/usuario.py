@@ -12,8 +12,8 @@ class UsuarioDB(IGestorDB):
 
         return self.DB.llamar_sp('guardarUsuario',
                                  [nuevo_usuario_entidad.ci, nuevo_usuario_entidad.nombreCompleto,
-                                  nuevo_usuario_entidad.email, nuevo_usuario_entidad.password,
-                                  nuevo_usuario_entidad.apodo, nuevo_usuario_entidad.rol.rolId])
+                                  nuevo_usuario_entidad.email, nuevo_usuario_entidad.apodo,
+                                  nuevo_usuario_entidad.password, nuevo_usuario_entidad.rol.rolId])
 
     def obtener(self) -> Union[List, None]:
         valores_usuarios = self.DB.llamar_sp('obtenerTodoUsuario', [])
