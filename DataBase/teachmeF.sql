@@ -38,9 +38,10 @@ ALTER FUNCTION public.eliminarpermiso(idpermisoe integer) OWNER TO postgres;
 
 CREATE FUNCTION public.eliminarrol(idrol integer) RETURNS integer
     LANGUAGE plpgsql
-    AS $$
-Begin
+    AS $$Begin
 	---guarda el permiso en la tabla---
+	
+	DELETE FROM public."Rol_Permiso" WHERE "idRol" = idRol;
 	DELETE FROM public."Rol" WHERE "idRol" = idRol;
 	return idRol;
 End;
@@ -99,6 +100,22 @@ $$;
 
 
 ALTER FUNCTION public.guardarrol(nombre character varying, descripcion character varying) OWNER TO postgres;
+
+--
+-- Name: guardarrolpermiso(integer, integer); Type: FUNCTION; Schema: public; Owner: postgres
+--
+
+CREATE FUNCTION public.guardarrolpermiso(idrol integer, idpermiso integer) RETURNS SETOF boolean
+    LANGUAGE plpgsql
+    AS $$
+Begin
+	INSERT INTO "Rol_Permiso" VALUES (idRol,idPermiso);
+	return next true;
+End;
+$$;
+
+
+ALTER FUNCTION public.guardarrolpermiso(idrol integer, idpermiso integer) OWNER TO postgres;
 
 --
 -- Name: guardarusuario(integer, character varying, character varying, character varying, character varying, integer); Type: FUNCTION; Schema: public; Owner: postgres
@@ -354,9 +371,7 @@ ALTER TABLE ONLY public."Rol" ALTER COLUMN "idRol" SET DEFAULT nextval('public."
 --
 
 COPY public."Permiso" ("idPermiso", nombre, descripcion) FROM stdin;
-15	CE	Tiene el permiso de poder crear examenes para los estudiantes
-21	CE	Tiene el permiso de poder crear examenes para los estudiantes
-27	permiso1	permiso1
+43	Decano	No estoy muy seguro que hace
 \.
 
 
@@ -365,7 +380,6 @@ COPY public."Permiso" ("idPermiso", nombre, descripcion) FROM stdin;
 --
 
 COPY public."Rol" ("idRol", nombre, descripcion) FROM stdin;
-1	rol1	asfasdfasdf
 \.
 
 
@@ -374,9 +388,6 @@ COPY public."Rol" ("idRol", nombre, descripcion) FROM stdin;
 --
 
 COPY public."Rol_Permiso" ("idRol", "idPermiso") FROM stdin;
-1	15
-1	21
-1	27
 \.
 
 
@@ -385,7 +396,6 @@ COPY public."Rol_Permiso" ("idRol", "idPermiso") FROM stdin;
 --
 
 COPY public."Usuario" ("idCi", "nombreCompleto", email, "nombreUsuario", "contraseña", "idRol") FROM stdin;
-123456789	Alan Cristopher Suarez Suarez	alanss2907@gmail.com	ACSS	Quequieres1	1
 \.
 
 
@@ -393,14 +403,14 @@ COPY public."Usuario" ("idCi", "nombreCompleto", email, "nombreUsuario", "contra
 -- Name: Permiso_idPermiso_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public."Permiso_idPermiso_seq"', 33, true);
+SELECT pg_catalog.setval('public."Permiso_idPermiso_seq"', 43, true);
 
 
 --
 -- Name: Rol_idRol_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public."Rol_idRol_seq"', 7, true);
+SELECT pg_catalog.setval('public."Rol_idRol_seq"', 13, true);
 
 
 --
